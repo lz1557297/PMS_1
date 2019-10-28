@@ -96,7 +96,7 @@ public class UserAction {
     }
 
     public void loadUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.setCharacterEncoding(charset);
+        //request.setCharacterEncoding(charset);
         String user_id = request.getParameter("user_id");
 
         User user = dao.load(user_id);

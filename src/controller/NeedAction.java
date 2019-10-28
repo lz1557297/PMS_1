@@ -1,5 +1,6 @@
 package controller;
 
+import net.sf.json.JSONArray;
 import po.Need;
 import po.Project;
 import service.NeedService;
@@ -7,6 +8,8 @@ import service.ProjectService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -91,5 +94,22 @@ public class NeedAction {
         System.out.println(need_id+"   "+need_title+"  "+need_info+"   "+dateNowStr);
         service.updateNeed(Integer.parseInt(need_id),dateNowStr,need_title,need_info);
         return this.queryAll(request, response);
+    }
+
+    public void queryNeedsByProject(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String project_id = request.getParameter("value");
+        System.out.printf("project_id: "+project_id);
+        List<Need> needs = service.queryNeedsByProject(Integer.parseInt(project_id));
+
+        for (Need n :
+                needs) {
+            System.out.println(n);
+        }
+
+        PrintWriter out = response.getWriter();
+        out.write(JSONArray.fromObject(needs).toString());
+        out.flush();
+
+
     }
 }

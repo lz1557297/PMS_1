@@ -12,6 +12,10 @@ public class NeedService {
         return dao.queryAllNeed();
     }
 
+    public List<Need> queryNeedsByProject(int project_id){
+        return dao.queryNeedsByProject(project_id);
+    }
+
     public void insertNewNeed(String need_title,String need_info,int project_id,String project_name,String need_set_time,String need_update_time){
         Need need = new Need();
         need.setNeed_title(need_title);
@@ -43,4 +47,6 @@ public class NeedService {
     public void deleteNeed(int need_id){
         dao.delete(need_id);
     }
+
+
 }

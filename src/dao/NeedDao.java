@@ -67,6 +67,25 @@ public class NeedDao {
     }
 
 
+    public List<Need> queryNeedsByProject(int project_id){
+        String sql = "select * from pms_need where project_id = ?";
+        return jdbcTemplate.queryForList(sql,new Object[]{project_id}, new rowMapper() {
+            @Override
+            public Object mapRow(ResultSet rs) throws SQLException {
+                Need need = new Need();
+                need.setNeed_id(rs.getInt("need_id"));
+                need.setNeed_title(rs.getString("need_title"));
+                need.setNeed_info(rs.getString("need_info"));
+                need.setProject_id(rs.getInt("project_id"));
+                need.setProject_name(rs.getString("project_name"));
+                need.setNeed_set_time(rs.getString("need_set_time"));
+                need.setNeed_update_time(rs.getString("need_update_time"));
+                return need;
+            }
+        });
+    }
+
+
     //获取单条记录的方法
     public Need load(int need_id){
         String sql = "select * from pms_need where need_id = ?";
