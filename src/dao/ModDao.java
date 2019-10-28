@@ -103,4 +103,24 @@ public class ModDao {
         String sql = "delete from pms_mod where mod_id = ?";
         this.jdbcTemplate.update(sql, new Object[]{mod_id});
     }
+
+    public List<Mod> queryModByNeed(int need_id){
+        String sql = "select * from pms_mod where need_id = ?";
+        return jdbcTemplate.queryForList(sql,new Object[]{need_id}, new rowMapper() {
+            @Override
+            public Object mapRow(ResultSet rs) throws SQLException {
+                Mod mod = new Mod();
+                //mod.setProject((Project) rs.getObject("project"));
+                mod.setMod_id(rs.getInt("mod_id"));
+                mod.setMod_title(rs.getString("mod_title"));
+                mod.setMod_info(rs.getString("mod_info"));
+                mod.setNeed_id(rs.getInt("need_id"));
+                mod.setNeed_name(rs.getString("need_name"));
+                mod.setPriority(rs.getString("priority"));
+                mod.setMod_set_time(rs.getString("mod_set_time"));
+                mod.setMod_update_time(rs.getString("mod_update_time"));
+                return mod;
+            }
+        });
+    }
 }

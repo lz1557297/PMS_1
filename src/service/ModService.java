@@ -52,4 +52,8 @@ public class ModService {
     public void deleteMod(int mod_id){
         dao.delete(mod_id);
     }
+
+    public List<Mod> queryModByNeed(int need_id){
+        return dao.queryModByNeed(need_id);
+    }
 }

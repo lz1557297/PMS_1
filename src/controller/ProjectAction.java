@@ -135,4 +135,23 @@ public class ProjectAction {
         return "insertMod.jsp";
     }
 
+
+
+
+    public String loadAllProjectForFunction(HttpServletRequest request, HttpServletResponse response){
+        List<Project> list = ps.queryAll();
+
+        for (Project project:list) {
+            System.out.println(project);
+        }
+
+//        for (User user:listx) {
+//            System.out.println(user);
+//        }
+
+        request.setAttribute("list",list);
+        //request.setAttribute("listx",listx);
+        return "insertFunction.jsp";
+    }
+
 }

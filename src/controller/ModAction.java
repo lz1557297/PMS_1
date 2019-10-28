@@ -1,5 +1,6 @@
 package controller;
 
+import net.sf.json.JSONArray;
 import po.Mod;
 import po.Need;
 import service.ModService;
@@ -7,6 +8,8 @@ import service.NeedService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -95,5 +98,22 @@ public class ModAction {
         System.out.println(mod_id+"   "+mod_title+"  "+mod_info+"   "+dateNowStr+"   "+priority);
         service.updatemod(Integer.parseInt(mod_id),dateNowStr,mod_title,mod_info,priority);
         return this.queryAll(request, response);
+    }
+
+    public void queryModByNeed(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String need_id = request.getParameter("value");
+        System.out.printf("need_id: "+need_id);
+        List<Mod> mods = service.queryModByNeed(Integer.parseInt(need_id));
+
+        for (Mod n :
+                mods) {
+            System.out.println(n);
+        }
+
+        PrintWriter out = response.getWriter();
+        out.write(JSONArray.fromObject(mods).toString());
+        out.flush();
+
+
     }
 }
