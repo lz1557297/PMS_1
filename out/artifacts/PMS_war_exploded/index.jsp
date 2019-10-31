@@ -96,11 +96,11 @@
                                                 <input type="button" value="show" onclick="changePasswordType()"></td>
 
                                         </tr>
-                                            <%--<tr>--%>
-                                                <%--<td width="60%" align="left">验证码:--%>
-                                                    <%--<input type="text" name="checkcode" id="textfield3" class="login_input" width="60" size="7" /></td>--%>
-                                                <%--<td width="40%" align="left"><img id='imag' src="code.do?method=code" width="80" height="30" /></td>--%>
-                                            <%--</tr>--%>
+                                            <tr>
+                                                <td width="60%" align="left">验证码:
+                                                    <input type="text" name="checkcode" id="textfield3" class="login_input" width="60" size="7" /></td>
+                                                <td width="40%" align="left"><img id='imag' src="code.do?method=code" width="80" height="30" /></td>
+                                            </tr>
 
 
                                 </table></td>

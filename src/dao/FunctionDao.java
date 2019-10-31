@@ -43,6 +43,9 @@ public class FunctionDao {
 
     public void insert(Function function){
         int index = this.queryLength();
+        if (index==0){
+            index=1;
+        }
         String sql = "insert into pms_function values (?,?,?,?,?,?,?,?)";//并发 并行
         this.jdbcTemplate.update(sql, new Object[]{index,function.getFunction_title(),function.getFunction_info(),function.getMod_id(),function.getMod_title(),function.getPriority(),function.getFunction_set_time(),function.getFunction_update_time()});
     }
@@ -70,7 +73,7 @@ public class FunctionDao {
                 function.setFunction_set_time(rs.getString("function_set_time"));
                 function.setFunction_update_time(rs.getString("function_update_time"));
                 function.setProject(ps.queryOneProject(ns.queryOneNeed(ms.queryOnemod(function.getMod_id()).getNeed_id()).getProject_id()));
-                function.setNeed(ns.queryOneNeed(ms.queryOnemod(function.getMod_id()).getNeed_id()));
+                //function.setNeed(ns.queryOneNeed(ms.queryOnemod(function.getMod_id()).getNeed_id()));
                 return function;
             }
         });
@@ -94,7 +97,7 @@ public class FunctionDao {
                 function.setFunction_set_time(rs.getString("function_set_time"));
                 function.setFunction_update_time(rs.getString("function_update_time"));
                 function.setProject(ps.queryOneProject(ns.queryOneNeed(ms.queryOnemod(function.getMod_id()).getNeed_id()).getProject_id()));
-                function.setNeed(ns.queryOneNeed(ms.queryOnemod(function.getMod_id()).getNeed_id()));
+                //function.setNeed(ns.queryOneNeed(ms.queryOnemod(function.getMod_id()).getNeed_id()));
                 return function;
             }
         });
@@ -106,5 +109,29 @@ public class FunctionDao {
     public void delete(int function_id){
         String sql = "delete from pms_function where function_id = ?";
         this.jdbcTemplate.update(sql, new Object[]{function_id});
+    }
+
+    //queryFunctionByMod
+
+    public List<Function> queryFunctionByMod(int mod_id){
+        String sql = "select * from pms_function where mod_id = ?";
+        return jdbcTemplate.queryForList(sql,new Object[]{mod_id}, new rowMapper() {
+            @Override
+            public Object mapRow(ResultSet rs) throws SQLException {
+                Function function = new Function();
+                //mod.setProject((Project) rs.getObject("project"));
+                function.setFunction_id(rs.getInt("function_id"));
+                function.setFunction_title(rs.getString("function_title"));
+                function.setFunction_info(rs.getString("function_info"));
+                function.setMod_id(rs.getInt("mod_id"));
+                function.setMod_title(rs.getString("mod_name"));
+                function.setPriority(rs.getString("priority"));
+                function.setFunction_set_time(rs.getString("function_set_time"));
+                function.setFunction_update_time(rs.getString("function_update_time"));
+                function.setProject(ps.queryOneProject(ns.queryOneNeed(ms.queryOnemod(function.getMod_id()).getNeed_id()).getProject_id()));
+                function.setNeed(ns.queryOneNeed(ms.queryOnemod(function.getMod_id()).getNeed_id()));
+                return function;
+            }
+        });
     }
 }

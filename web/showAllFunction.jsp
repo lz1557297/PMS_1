@@ -44,7 +44,7 @@
                     <td align="center" class="back_main03"><span class="font_bold">功能名称</span></td>
                     <td align="center" class="back_main03"><span class="font_bold">功能内容</span></td>
                     <td align="center" class="back_main03"><span class="font_bold">所属项目</span></td>
-                    <td align="center" class="back_main03"><span class="font_bold">所属需求</span></td>
+                    <%--<td align="center" class="back_main03"><span class="font_bold">所属需求</span></td>--%>
                     <td align="center" class="back_main03"><span class="font_bold">所属模块</span></td>
                     <td align="center" class="back_main03"><span class="font_bold">优先级</span></td>
                     <td align="center" class="back_main03"><span class="font_bold">创建时间</span></td>
@@ -60,7 +60,7 @@
                         <%--<td align="center" bgcolor="#FFFFFF">${modd.project.project_id }</td>--%>
                         <td align="center" bgcolor="#FFFFFF">${function.project.project_name }</td>
                         <%--<td align="center" bgcolor="#FFFFFF">${modd.need_id }</td>--%>
-                        <td align="center" bgcolor="#FFFFFF">${function.need.need_title }</td>
+                        <%--<td align="center" bgcolor="#FFFFFF">${function.need.need_title }</td>--%>
                         <td align="center" bgcolor="#FFFFFF">${function.mod_title }</td>
                         <td align="center" bgcolor="#FFFFFF">${function.priority }</td>
                         <td align="center" bgcolor="#FFFFFF">${function.function_set_time }</td>

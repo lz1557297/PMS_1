@@ -51,4 +51,8 @@ public class FunctionService {
     public void deleteFunction(int function_id){
         dao.delete(function_id);
     }
+
+    public List<Function> queryFunctionByMod(int mod_id){
+        return dao.queryFunctionByMod(mod_id);
+    }
 }

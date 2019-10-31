@@ -37,6 +37,9 @@ public class MessageDao {
 
     public void insert(Message message){
         int index = this.queryLength();
+        if (index==0){
+            index=1;
+        }
         String sql = "insert into pms_message values (?,?,?,?,?,?,?,?,?,?)";//并发 并行
         this.jdbcTemplate.update(sql, new Object[]{message.getSender(),message.getSender_id(),message.getReceiver(),message.getReceiver_id(),index,message.getMessage_title(),message.getMessage_info(),message.getSend_time(),message.getIs_deleted_by_sender(),message.getIs_deleted_by_receiver()});
     }

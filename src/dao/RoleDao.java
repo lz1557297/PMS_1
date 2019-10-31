@@ -61,6 +61,9 @@ public class RoleDao{
 
     public void insert(Role role){
         int index = this.queryLength();
+        if (index==0){
+            index=1;
+        }
         String sql = "insert into pms_role values (?,?)";//并发 并行
         this.jdbcTemplate.update(sql, new Object[]{index,role.getRole_name()});
     }

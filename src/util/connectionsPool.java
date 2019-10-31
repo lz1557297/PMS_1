@@ -6,7 +6,7 @@ import java.util.List;
 public class connectionsPool {
     private static List<myConnection> pools = new ArrayList<>();   //用于存储连接的集合
     static {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 100; i++) {
             myConnection mc = new myConnection(i);
             pools.add(mc);
         }

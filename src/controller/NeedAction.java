@@ -24,9 +24,9 @@ public class NeedAction {
     //查询全部数据
     public String queryAll(HttpServletRequest request, HttpServletResponse response){
         List<Need> list = service.queryAll();
-        for (Need p : list) {
-            System.out.println(p);
-        }
+//        for (Need p : list) {
+//            System.out.println(p);
+//        }
 
         //List<Client> list_c = null;
 

@@ -22,6 +22,9 @@ public class UserDao {
                 user.setPassword(rs.getString("password"));
                 user.setUsername(rs.getString("username"));
                 user.setJob_id(rs.getInt("job_id"));
+                user.setRole_id(rs.getInt("role_id"));
+                user.setUser_tel(rs.getString("user_tel"));
+                user.setUser_email(rs.getString("user_email"));
                 System.out.println(user);
                 return user;
             }
@@ -39,6 +42,9 @@ public class UserDao {
                 user.setPassword(rs.getString("password"));
                 user.setUsername(rs.getString("username"));
                 user.setJob_id(rs.getInt("job_id"));
+                user.setRole_id(rs.getInt("role_id"));
+                user.setUser_tel(rs.getString("user_tel"));
+                user.setUser_email(rs.getString("user_email"));
                 System.out.println(user);
                 return user;
             }
@@ -73,5 +79,43 @@ public class UserDao {
             }
         });
     }
+
+
+
+
+    public List<User> loadAllCoder(){
+        String sql = "select * from pms_user where job_id = 3";
+        //System.out.println(id);
+        return (List<User>) jdbcTemplate.queryForList(sql, new rowMapper() {
+            @Override
+            public Object mapRow(ResultSet rs) throws SQLException {
+                User user = new User();
+                user.setUser_id(rs.getInt("user_id"));
+                user.setPassword(rs.getString("password"));
+                user.setUsername(rs.getString("username"));
+                user.setJob_id(rs.getInt("job_id"));
+                System.out.println(user);
+                return user;
+            }
+        });
+    }
+
+    public void update(User user){
+        String sql="update pms_user set username=?,password=?,job_id=?,role_id=?,user_tel=?,user_email=? where user_id=?";
+        this.jdbcTemplate.update(sql, new Object[]{user.getUsername(),user.getPassword(),user.getJob_id(),user.getRole_id(),user.getUser_tel(),user.getUser_email(),user.getUser_id()});
+    }
+
+
+    public void delete(int user_id){
+        String sql="delete from pms_user where user_id=?";
+        this.jdbcTemplate.update(sql, new Object[]{user_id});
+    }
+
+    public void updateLimit(User user){
+        String sql = "update pms_user set password = ?, user_tel = ?, user_email = ? where user_id = ?";
+        JDBCTemplate.update(sql, new Object[]{user.getPassword(),user.getUser_tel(),user.getUser_email(),user.getUser_id()});
+//        密码 电话 邮箱
+    }
+
 
 }

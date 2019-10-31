@@ -48,4 +48,39 @@ public class UserService {
         return dao.loadAllChef();
     }
 
+
+    public List<User> queryAllCoder(){
+        return dao.loadAllCoder();
+    }
+
+    public List<User> query(){
+        return dao.loadAll();
+
+    }
+
+    public void update(String user_id,String username,String password,int job_id,int role_id,String user_tel,String user_email){
+        User user=dao.load(user_id);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setJob_id(job_id);
+        user.setRole_id(role_id);
+        user.setUser_tel(user_tel);
+        user.setUser_email(user_email);
+        dao.update(user);
+    }
+
+    public void delete(int user_id){
+        dao.delete(user_id);
+
+    }
+
+    public void updateUser(int user_id,String password,String user_tel,String user_email){
+        //获取到更新之前的旧数据
+        User user  = dao.load(String.valueOf(user_id));
+        user.setPassword(password);
+        user.setUser_tel(user_tel);
+        user.setUser_email(user_email);
+        dao.updateLimit(user);
+    }
+
 }

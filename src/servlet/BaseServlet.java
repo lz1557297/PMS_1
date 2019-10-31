@@ -31,6 +31,8 @@ public class BaseServlet extends HttpServlet {
         map.put("need.do", "controller.NeedAction");
         map.put("mod.do", "controller.ModAction");
         map.put("function.do", "controller.FunctionAction");
+        map.put("plan.do", "controller.PlanAction");
+        map.put("job.do", "controller.JobAction");
 
         String uri = request.getRequestURI();    //得到  /reflect_demo_war_exploded/aa.do
         System.out.println(uri);

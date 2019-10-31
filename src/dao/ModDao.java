@@ -42,6 +42,9 @@ public class ModDao {
 
     public void insert(Mod mod){
         int index = this.queryLength();
+        if (index==0){
+            index=1;
+        }
         String sql = "insert into pms_mod values (?,?,?,?,?,?,?,?)";//并发 并行
         this.jdbcTemplate.update(sql, new Object[]{index,mod.getMod_title(),mod.getMod_info(),mod.getNeed_id(),mod.getNeed_name(),mod.getPriority(),mod.getMod_set_time(),mod.getMod_update_time()});
     }

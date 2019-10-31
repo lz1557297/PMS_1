@@ -51,7 +51,7 @@ public class MessageAction {
         System.out.println(receiver+"-"+receiver_id+"-"+message_title+"-"+message_info+"-"+sender_id+"-"+sender+"-"+dateNowStr);
 
         service.insertNewMessage(sender,Integer.parseInt(sender_id),receiver,Integer.parseInt(receiver_id),message_title,message_info,dateNowStr);
-        return this.queryAll(request, response);  //拿到queryAll的返回值
+        return "messageSend.jsp";  //拿到queryAll的返回值
     }
 
 

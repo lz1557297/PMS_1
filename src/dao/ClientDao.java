@@ -39,6 +39,9 @@ public class ClientDao {
 
     public void insert(Client client){
         int index = this.queryLength();
+        if (index==0){
+            index=1;
+        }
         String sql = "insert into pms_client values (?,?,?,?,?,?,?)";//并发 并行
         this.jdbcTemplate.update(sql, new Object[]{client.getClient_name(),index,client.getClient_pre(),client.getClient_tel(),client.getClient_addr(),client.getClient_back(),client.getClient_set_time()});
     }

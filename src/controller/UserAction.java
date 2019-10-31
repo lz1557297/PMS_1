@@ -38,7 +38,7 @@ public class UserAction {
 
         //checkcode.equals(scode)
 
-        if (1==1){
+        if (checkcode.equals(scode)){
             String rex_id = "[a-zA-Z]{1,3}";
             String rex_password = "[0-9a-z]{1,6}";
             String path = "";
@@ -109,5 +109,64 @@ public class UserAction {
         PrintWriter out = response.getWriter();
         out.write(result);
         out.flush();
+    }
+
+    public String query(HttpServletRequest request,HttpServletResponse response){
+        List<User> list=service.query();
+        request.setAttribute("list", list);
+        return "showuser.jsp";
+    }
+
+    public String queryOne(HttpServletRequest request,HttpServletResponse response){
+        String id=request.getParameter("user_id");
+        User user =service.queryOne(id);
+        request.setAttribute("user", user);
+        return "showOneUser.jsp";
+    }
+
+    public String update(HttpServletRequest request,HttpServletResponse response){
+        String user_id =request.getParameter("user_id");
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
+        String job_id=request.getParameter("job_id");
+        String role_id=request.getParameter("role_id");
+        String user_tel=request.getParameter("user_tel");
+        String user_email=request.getParameter("user_email");
+        service.update(user_id,username, password, Integer.parseInt(job_id),Integer.parseInt(role_id),user_tel,user_email);
+        return this.query(request, response);
+    }
+
+    public String delete(HttpServletRequest request,HttpServletResponse response){
+        String id=request.getParameter("user_id");
+        service.delete(Integer.parseInt(id));
+        return this.query(request, response);
+    }
+
+    public String loadUserForUser(HttpServletRequest request, HttpServletResponse response){
+        String user_id = (String) request.getSession().getAttribute("user_id");
+        System.out.println(user_id);
+        UserService us = new UserService();
+        User user = service.queryOne(user_id);
+        request.setAttribute("user", user);
+        return "showPersonalInfo.jsp";
+    }
+
+    public String loadOne(HttpServletRequest request, HttpServletResponse response){
+        String user_id = (String) request.getSession().getAttribute("user_id");
+        User user = service.queryOne(user_id);
+        request.setAttribute("user", user);
+        return "updatePersonalInfo.jsp";
+    }
+
+    public String updateLimit(HttpServletRequest request,HttpServletResponse response){
+        String user_id = (String) request.getSession().getAttribute("user_id");
+        System.out.println("user_id-----------------"+user_id);
+        User user = service.queryOne(user_id);
+        request.setAttribute("user", user);
+        String password = request.getParameter("password");
+        String user_tel = request.getParameter("user_tel");
+        String user_email = request.getParameter("user_email");
+        service.updateUser(Integer.parseInt(user_id), password,user_tel,user_email);
+        return this.loadUserForUser(request, response);
     }
 }

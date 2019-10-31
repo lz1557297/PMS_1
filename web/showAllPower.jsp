@@ -54,8 +54,8 @@
             </table>
                 <table width="100%" border="0" cellpadding="0" cellspacing="10" bgcolor="#FFFFFF" class="border03">
                     <tr>
-                        <td align="left">角色名称：
-                            <input disabled="disabled" type="text" name="roleName" value="财务审核" id="textfield2" class="input" /></td>
+                        <%--<td align="left">角色名称：--%>
+                            <%--<input disabled="disabled" type="text" name="roleName" value="" id="textfield2" class="input" /></td>--%>
                     </tr>
                     <tr>
                         <td align="left">
@@ -89,9 +89,9 @@
                 </tr>
             </table>
                 <table width="100%" border="0" cellspacing="15" cellpadding="0">
-                    <tr>
-                        <td align="center"><img src="images/main_btn8.gif" width="104" height="34" /></td>
-                    </tr>
+                    <%--<tr>--%>
+                        <%--<td align="center"><img src="images/main_btn8.gif" width="104" height="34" /></td>--%>
+                    <%--</tr>--%>
                 </table></td>
         </tr>
         <tr>

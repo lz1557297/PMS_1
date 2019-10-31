@@ -152,6 +152,7 @@
 
                     所属项目:
                     <select name="project_id" id="s1" onchange="changeValue();">
+                        <option value='0'>--请选择--</option>
                         <c:forEach items="${requestScope.list}" var="project">
                             <option value='${project.project_id}'>${project.project_name}</option>
                         </c:forEach>

@@ -37,6 +37,9 @@ public class ProjectDao {
 
     public void insert(Project project){
         int index = this.queryLength();
+        if (index==0){
+            index=1;
+        }
         String sql = "insert into pms_project values (?,?,?,?,?,?,?,?,?,?,?)";//并发 并行
         this.jdbcTemplate.update(sql, new Object[]{index,project.getProject_name(),project.getClient_id(),project.getClient_name(),project.getUser_id(),project.getUsername(),project.getCoder_count(),project.getProject_set_time(),project.getProject_update_time(),project.getProject_priority(),project.getStatus()});
     }

@@ -37,6 +37,9 @@ public class NeedDao {
 
     public void insert(Need need){
         int index = this.queryLength();
+        if (index==0){
+            index=1;
+        }
         String sql = "insert into pms_need values (?,?,?,?,?,?,?)";//并发 并行
         this.jdbcTemplate.update(sql, new Object[]{index,need.getNeed_title(),need.getNeed_info(),need.getProject_id(),need.getProject_name(),need.getNeed_set_time(),need.getNeed_update_time()});
     }

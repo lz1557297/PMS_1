@@ -23,9 +23,9 @@ public class ModAction {
     //查询全部数据
     public String queryAll(HttpServletRequest request, HttpServletResponse response){
         List<Mod> list = service.queryAll();
-        for (Mod p : list) {
-            System.out.println(p);
-        }
+//        for (Mod p : list) {
+//            System.out.println(p);
+//        }
 
 
 

@@ -1,5 +1,6 @@
 package controller;
 
+import net.sf.json.JSONArray;
 import po.Function;
 import po.Mod;
 import service.FunctionService;
@@ -7,6 +8,8 @@ import service.ModService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,10 +26,10 @@ public class FunctionAction {
     public String queryAll(HttpServletRequest request, HttpServletResponse response){
         List<Function> list = service.queryAll();
 
-        System.out.println("---------");
-        for (Function p : list) {
-            System.out.println(p);
-        }
+//        System.out.println("---------");
+//        for (Function p : list) {
+//            System.out.println(p);
+//        }
 
 
 
@@ -102,5 +105,26 @@ public class FunctionAction {
         System.out.println(function_id+"   "+function_title+"  "+function_info+"   "+dateNowStr+"   "+priority);
         service.updateFunction(Integer.parseInt(function_id),dateNowStr,function_title,function_info,priority);
         return this.queryAll(request, response);
+    }
+
+    //queryFunctionByMod
+
+    public void queryFunctionByMod(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String mod_id = request.getParameter("value");
+        System.out.printf("mod_id: "+mod_id);
+        List<Function> mods = service.queryFunctionByMod(Integer.parseInt(mod_id));
+
+
+        System.out.println("queryFunctionByMod result");
+        for (Function n :
+                mods) {
+            System.out.println(n);
+        }
+
+        PrintWriter out = response.getWriter();
+        out.write(JSONArray.fromObject(mods).toString());
+        out.flush();
+
+
     }
 }

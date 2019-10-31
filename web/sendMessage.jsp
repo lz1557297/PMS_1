@@ -68,9 +68,9 @@
                         </tr>
                     </table></td>
                     <td width="50%" align="right"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="back_main05">
-                        <tr>
-                            <td align="center"><a class="link_white" href="message.do?method=queryAll">+ 返回列表</a></td>
-                        </tr>
+                        <%--<tr>--%>
+                            <%--<td align="center"><a class="link_white" href="message.do?method=queryAll">+ 返回列表</a></td>--%>
+                        <%--</tr>--%>
                     </table></td>
                 </tr>
             </table>
